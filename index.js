@@ -12,7 +12,6 @@ if (!GREEN_ID || !GREEN_TOKEN || !GROUP_ID) {
 }
 
 async function getWordOfTheDay() {
-  // Try Wordnik if key provided
   if (WORDNIK_KEY) {
     try {
       const r = await fetch(`https://api.wordnik.com/v4/words.json/wordOfTheDay?api_key=${WORDNIK_KEY}`);
@@ -21,12 +20,14 @@ async function getWordOfTheDay() {
         const definition = data.definitions?.[0]?.text || "No definition available.";
         return { word: data.word, definition };
       } else {
-        console.warn("Wordnik response not OK, falling back:", r.status);
+        throw new Error(`Wordnik response not OK: ${r.status}`);
       }
     } catch (e) {
-      console.warn("Wordnik fetch failed, falling back:", e.message);
+      throw new Error(`Wordnik fetch failed: ${e.message}`);
     }
   }
+  throw new Error("WORDNIK_KEY not set");
+}
 
 async function sendTextToWhatsApp(message) {
   const url = `https://api.green-api.com/waInstance${GREEN_ID}/sendMessage/${GREEN_TOKEN}`;
@@ -58,5 +59,3 @@ async function sendTextToWhatsApp(message) {
     process.exit(1);
   }
 })();
-
-
