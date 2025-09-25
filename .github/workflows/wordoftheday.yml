@@ -1,0 +1,22 @@
+name: Word of the Day to WhatsApp
+
+on:
+  schedule:
+    - cron: "30 5 * * *" # every day at 05:30 UTC
+  workflow_dispatch: # allows manual run
+
+jobs:
+  send-word:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - run: npm install node-fetch@3
+      - run: node index.js
+        env:
+          WORDNIK_KEY: ${{ secrets.WORDNIK_KEY }}
+          GREEN_ID: ${{ secrets.GREEN_ID }}
+          GREEN_TOKEN: ${{ secrets.GREEN_TOKEN }}
+          GROUP_ID: ${{ secrets.GROUP_ID }}
