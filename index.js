@@ -1,4 +1,4 @@
-import fetch from "node-fetch";
+// import fetch from "node-fetch";
 
 const WORDNIK_KEY = process.env.WORDNIK_KEY;
 const GREEN_ID = process.env.GREEN_ID;
@@ -76,3 +76,4 @@ async function sendToWhatsApp(url) {
     process.exit(1);
   }
 })();
+
