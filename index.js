@@ -4,7 +4,7 @@
 const WORDNIK_KEY = process.env.WORDNIK_KEY; // required
 const GREEN_ID = process.env.GREEN_ID;
 const GREEN_TOKEN = process.env.GREEN_TOKEN;
-const GROUP_IDS = process.env.GROUP_IDS; // comma-separated, e.g. "123456@g.us,987654@g.us"
+const GROUP_IDS = process.env.GROUP_ID; // comma-separated, e.g. "123456@g.us,987654@g.us"
 
 if (!GREEN_ID || !GREEN_TOKEN || !GROUP_IDS) {
   console.error("Missing GREEN_ID, GREEN_TOKEN or GROUP_IDS in env");
@@ -72,3 +72,4 @@ async function sendTextToWhatsApp(chatId, message) {
     process.exit(1);
   }
 })();
+
