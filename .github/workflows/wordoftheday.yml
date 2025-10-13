@@ -1,8 +1,8 @@
 name: Word of the Day to WhatsApp
 
 on:
-  schedule:
-    - cron: "30 5 * * *" # every day at 05:30 UTC
+  # schedule:
+  #   - cron: "30 5 * * *" # every day at 05:30 UTC
   workflow_dispatch: # allows manual run
 
 jobs:
